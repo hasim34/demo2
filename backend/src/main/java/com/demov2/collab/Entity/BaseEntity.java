@@ -20,8 +20,7 @@ public abstract class BaseEntity {
     private LocalDateTime createAt;
     private LocalDateTime updateAt;
 
-
-
+        
     @PrePersist
     protected  void onCreate(){
         createAt=LocalDateTime.now();
