@@ -1,7 +1,7 @@
 package com.demov2.collab.Controller;
 
 
-import com.demov2.collab.Dto.CreateCustomerRequest;
+import com.demov2.collab.DTO.CreateCustomerRequest;
 import com.demov2.collab.Entity.Customer;
 import com.demov2.collab.Service.CustomerService;
 import org.springframework.http.HttpStatus;
@@ -18,10 +18,7 @@ public class CustomerController {
     }
     @PostMapping("/customer")
     public ResponseEntity<?> addCustomer (CreateCustomerRequest createCustomerRequest){
-
-        Customer customer = customerService.addCustomer(createCustomerRequest);
-
-        return  ResponseEntity.status(HttpStatus.CREATED).body(customer);
+        return  ResponseEntity.status(HttpStatus.CREATED).body( customerService.addCustomer(createCustomerRequest));
     }
 
 

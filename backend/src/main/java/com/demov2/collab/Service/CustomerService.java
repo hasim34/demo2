@@ -1,10 +1,12 @@
 package com.demov2.collab.Service;
 
-import com.demov2.collab.Dto.CreateCustomerRequest;
+import com.demov2.collab.Controller.CustomerController;
+import com.demov2.collab.DTO.CreateCustomerRequest;
 import com.demov2.collab.Entity.Customer;
 import com.demov2.collab.Entity.Enums.CustomerStatus;
 import com.demov2.collab.Repository.CustomerRepository;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -12,21 +14,25 @@ import java.util.List;
 
 @Service
 public class CustomerService {
+    // private final CustomerController customerController;
     private final CustomerRepository customerRepository;
 
     public CustomerService(CustomerRepository customerRepository){
         this.customerRepository=customerRepository;
+        // this.customerController = customerController;
     }
 
 
-    public ResponseEntity<?> addCustomer(CreateCustomerRequest createCustomerRequest){
+    public ResponseEntity<Customer> addCustomer(CreateCustomerRequest createCustomerRequest){
         Customer customer = new Customer();
-
+        System.out.println(createCustomerRequest.getName());
         customer.setAddress(createCustomerRequest.getAddress());
         customer.setName(createCustomerRequest.getName());
         customer.setPhoneNumber(createCustomerRequest.getPhoneNumber());
         customer.setCustomerStatus(CustomerStatus.Active);
-        ;
+        customerRepository.save(customer);
+        System.out.println(customer.getName());
+        return new ResponseEntity<>(customer,HttpStatus.CREATED);
     }
 
     public String addCustomers(List<Customer> customers){
