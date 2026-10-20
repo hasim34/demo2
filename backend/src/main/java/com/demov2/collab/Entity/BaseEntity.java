@@ -17,6 +17,9 @@ public abstract class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+
+    @Column(updatable = false)
     private LocalDateTime createAt;
     private LocalDateTime updateAt;
 
