@@ -12,6 +12,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity 
+@Setter
+@Getter
 public class Orders extends BaseEntity {
 
     @OneToMany(mappedBy = "order")

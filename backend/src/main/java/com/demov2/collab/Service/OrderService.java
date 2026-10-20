@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import com.demov2.collab.DTO.OrderDto;
 import com.demov2.collab.DTO.OrderItemDto;
 import com.demov2.collab.Entity.Customer;
+import com.demov2.collab.Entity.OrderItem;
+import com.demov2.collab.Entity.Orders;
+import com.demov2.collab.Entity.Product;
 import com.demov2.collab.Repository.CustomerRepository;
 import com.demov2.collab.Repository.OrderItemsRepository;
 import com.demov2.collab.Repository.OrderRepository;
@@ -23,16 +26,31 @@ public class OrderService {
     private final ProductRepository productRepository;
 
     public String createOrder(OrderDto orderDto) {
-        Optional<Customer> customer = customerRepository.findById(orderDto.getCustomerId());
-        if(customer.isEmpty()) throw new NoUserFoundException("No user for the id "+orderDto.getCustomerId()); 
+        Customer customer = customerRepository.findById(orderDto.getCustomerId()).orElse(null);
+        if(customer==null) throw new NoUserFoundException("No user for the id "+orderDto.getCustomerId()); 
         // List<Long> productIds = new ArrayList<>();
-        for(OrderItemDto orderDto2 : orderDto.getItems()){
-            if(!productRepository.existsById(orderDto2.getProductId())){
-                throw new NoUserFoundException("no found product for id "+orderDto2.getProductId());
-            }
-            // Product product = productResponse
+        // for(OrderItemDto orderDto2 : orderDto.getItems()){
+        //     // if(!productRepository.existsById(orderDto2.getProductId())){
+        //     //     throw new NoUserFoundException("no found product for id "+orderDto2.getProductId());
+        //     // }
+        //     Product product  = productRepository.findById(orderDto2.getProductId()).orElseThrow(() -> new NoUserFoundException("no found product for id "+orderDto2.getProductId())); 
+        //     if(! (product.getAvailableStock() < orderDto2.getQuantity())) throw new NoUserFoundException("NO stock");
+        // }
+        Orders order = new Orders();
+        order.setCustomer(customer);
+        List<OrderItem> orderItems = new ArrayList<>();
+        for(OrderItemDto orders : orderDto.getItems()){
+            OrderItem orderItem = new OrderItem();
+            orderItem.setOrder(order);
+            Product product  = productRepository.findById(orders.getProductId()).orElseThrow(() -> new NoUserFoundException("no found product for id "+orders.getProductId())); 
+            if(!(product.getAvailableStock() < orders.getQuantity())) throw new NoUserFoundException("NO stock");
+            orderItem.setProduct(product);
+            orderItem.setQuantity(orders.getQuantity());
+            orderItem.setUnitPrice(product.getPrice());
+            orderItems.add(orderItem);
         }
-
+        orderRepository.save(order);
         return "Hi";
+
     }
 }

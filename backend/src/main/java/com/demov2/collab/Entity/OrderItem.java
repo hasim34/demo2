@@ -26,9 +26,8 @@ public class OrderItem  extends BaseEntity{
     @JoinColumn (name="product_id")
     private Product product;
     
-    private Integer quantity;
+    private Long quantity;
 
-    private Integer unitPrice;
-
+    private Long unitPrice;
 
 }

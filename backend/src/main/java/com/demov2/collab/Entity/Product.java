@@ -17,8 +17,8 @@ public class Product extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private ProductCategory category;
 
-    private  Integer price;
+    private Long price;
     private String manufacturor;
-    private Integer  availableStock;
+    private Long  availableStock;
 
 }
