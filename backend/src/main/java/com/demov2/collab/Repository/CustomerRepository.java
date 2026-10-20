@@ -1,4 +1,7 @@
 package com.demov2.collab.Repository;
 
-public interface CustomerRepository {
+import com.demov2.collab.Entity.Customer;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CustomerRepository extends JpaRepository<Customer ,Long> {
 }
