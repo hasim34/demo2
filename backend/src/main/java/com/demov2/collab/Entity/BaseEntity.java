@@ -1,4 +1,4 @@
-package com.example.orderManagement.Entity;
+package com.demov2.collab.Entity;
 
 
 import jakarta.persistence.*;
@@ -11,11 +11,11 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @MappedSuperclass
-public class BaseEntity {
+public abstract class BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String name;
 
     private LocalDateTime createAt;
