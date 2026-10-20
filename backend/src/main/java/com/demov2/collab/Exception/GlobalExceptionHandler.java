@@ -45,4 +45,10 @@ public class GlobalExceptionHandler {
         ApiErrorResponse  resp = new ApiErrorResponse(LocalDateTime.now(),HttpStatus.NOT_FOUND.value(),ex.toString(),ex.getMessage());
         return resp;
     }
+
+    @ExceptionHandler(UserNotCreatedException.class)
+    public ApiErrorResponse handleUserNotCreated(UserNotCreatedException ex){
+        ApiErrorResponse res = new ApiErrorResponse(LocalDateTime.now(),HttpStatus.BAD_REQUEST,ex.toString(),ex.getMessage());
+        return res;
+    }
 }
