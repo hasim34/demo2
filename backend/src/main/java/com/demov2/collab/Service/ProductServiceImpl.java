@@ -19,11 +19,13 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Product getProductById(Long id) {
         return productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
     }
@@ -36,5 +38,15 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public List<Product> createMulProduct(List<Product> products) {
         return productRepository.saveAll(products);
+    }
+
+    @Override
+    public Product updateProduct(Long id, Product product){
+        return product;
+    }
+
+    @Override
+    public void deleteProduct(Long id){
+
     }
 };
