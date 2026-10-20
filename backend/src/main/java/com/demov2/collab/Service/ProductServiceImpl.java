@@ -42,11 +42,19 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Product updateProduct(Long id, Product product){
-        return product;
+        Product existingProduct = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found for the given id : " + id));
+
+        existingProduct.setCategory(product.getCategory());
+        existingProduct.setPrice(product.getPrice());
+        existingProduct.setManufacturor(product.getManufacturor());
+        existingProduct.setAvailableStock(product.getAvailableStock());
+
+        return productRepository.save(existingProduct);
     }
 
     @Override
     public void deleteProduct(Long id){
-
+        Product existingProduct = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found for the given id : " + id));
+        productRepository.delete(existingProduct);
     }
 };
