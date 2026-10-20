@@ -11,6 +11,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.demov2.collab.Dto.ApiErrorResponse;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -36,5 +38,11 @@ public class GlobalExceptionHandler {
         //         .map(v -> Map.of("field", v.getPropertyPath().toString(), "message", v.getMessage()))
         //         .toList());
         return ResponseEntity.badRequest().body(errors);
+    }
+
+    @ExceptionHandler (NoUserFoundException.class)
+    public ApiErrorResponse handlenoUserFound(NoUserFoundException ex){
+        ApiErrorResponse  resp = new ApiErrorResponse(LocalDateTime.now(),HttpStatus.NOT_FOUND.value(),ex.toString(),ex.getMessage());
+        return resp;
     }
 }
