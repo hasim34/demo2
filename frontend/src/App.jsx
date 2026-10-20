@@ -1,17 +1,17 @@
 import { useState } from 'react'
 import { Typography, Space, Table, Button } from "antd";
 import { Routes, Route, Link } from "react-router-dom";
-import Home from './components/Home';
+import Product from './components/Product';
 
 function App() {
 
   return (
     <>
       <nav>
-        <Link to="/">Home</Link>
+        <Link to="/products">Show Products</Link>
       </nav>
       <Routes>
-        <Route path="/" element={<Home/>}></Route>
+        <Route path="/products" element={<Product/>}></Route>
       </Routes>
     </>
   )
