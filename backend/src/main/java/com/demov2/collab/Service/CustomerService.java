@@ -1,5 +1,6 @@
 package com.demov2.collab.Service;
 
+import com.demov2.collab.DTO.CreateCustomerRequest;
 import com.demov2.collab.Entity.Customer;
 import com.demov2.collab.Entity.Enums.CustomerStatus;
 import com.demov2.collab.Repository.CustomerRepository;
@@ -18,8 +19,15 @@ public class CustomerService {
     }
 
 
-    public String addCustomer(Customer customer){
+    public String addCustomer(CreateCustomerRequest createCustomerRequest){
+        Customer customer = new Customer();
+
+        customer.setAddress(createCustomerRequest.getAddress());
+        customer.setName(createCustomerRequest.getName());
+        customer.setPhoneNumber(createCustomerRequest.getPhoneNumber());
         customer.setCustomerStatus(CustomerStatus.Active);
+
+
         customerRepository.save(customer);
         return  "Customer added Successfully";
     }
