@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 public class Customer extends BaseEntity{
 
+    private String name;
     private long phoneNumber;
     private String emailId;
     private String Address;
