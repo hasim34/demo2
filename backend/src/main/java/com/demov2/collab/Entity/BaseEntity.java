@@ -16,8 +16,10 @@ public abstract class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
 
+
+
+    @Column(updatable = false)
     private LocalDateTime createAt;
     private LocalDateTime updateAt;
 
