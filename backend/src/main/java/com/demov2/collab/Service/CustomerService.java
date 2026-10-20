@@ -3,7 +3,7 @@ package com.demov2.collab.Service;
 import com.demov2.collab.Entity.Customer;
 import com.demov2.collab.Entity.Enums.CustomerStatus;
 import com.demov2.collab.Repository.CustomerRepository;
-import jakarta.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +19,7 @@ public class CustomerService {
 
 
     public String addCustomer(Customer customer){
+        customer.setCustomerStatus(CustomerStatus.Active);
         customerRepository.save(customer);
         return  "Customer added Successfully";
     }
@@ -36,7 +37,6 @@ public class CustomerService {
     }
 
 
-    @Transactional
     public String  updateStatus(Long id , CustomerStatus customerStatus){
      Customer customer = customerRepository.findById(id).orElseThrow(()->new RuntimeException("user Not Found"));
 
@@ -44,7 +44,7 @@ public class CustomerService {
      return "Customer status updated Successfully";
 
     }
-    @Transactional
+
     public String updateCustomer(Long id, Customer customer){
         Customer existingCustomer = customerRepository.findById(id).orElseThrow(()->new RuntimeException("user Not Found"));
 
