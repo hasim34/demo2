@@ -4,8 +4,8 @@ import java.util.*;
 
 import org.springframework.stereotype.Service;
 
-import com.demov2.collab.Dto.OrderDto;
-import com.demov2.collab.Dto.OrderItemDto;
+import com.demov2.collab.DTO.OrderDto;
+import com.demov2.collab.DTO.OrderItemDto;
 import com.demov2.collab.Entity.Customer;
 import com.demov2.collab.Repository.CustomerRepository;
 import com.demov2.collab.Repository.OrderItemsRepository;
@@ -30,7 +30,7 @@ public class OrderService {
             if(!productRepository.existsById(orderDto2.getProductId())){
                 throw new NoUserFoundException("no found product for id "+orderDto2.getProductId());
             }
-            // Product product = productRespo
+            // Product product = productResponse
         }
 
         return "Hi";

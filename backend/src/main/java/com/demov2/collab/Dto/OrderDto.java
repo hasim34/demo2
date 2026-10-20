@@ -1,4 +1,4 @@
-package com.demov2.collab.Dto;
+package com.demov2.collab.DTO;
 
 import java.util.ArrayList;
 import java.util.List;

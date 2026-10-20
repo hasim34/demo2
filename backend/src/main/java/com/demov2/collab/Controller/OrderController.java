@@ -2,8 +2,8 @@ package com.demov2.collab.Controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demov2.collab.Dto.ApiErrorResponse;
-import com.demov2.collab.Dto.OrderDto;
+import com.demov2.collab.DTO.ApiErrorResponse;
+import com.demov2.collab.DTO.OrderDto;
 
 import lombok.RequiredArgsConstructor;
 

@@ -1,4 +1,4 @@
-package com.demov2.collab.Dto;
+package com.demov2.collab.DTO;
 
 
 import lombok.Getter;
