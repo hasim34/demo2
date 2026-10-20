@@ -1,4 +1,4 @@
-package com.example.orderManagement.Entity;
+package com.demov2.collab.Entity;
 
 
 import jakarta.persistence.Entity;

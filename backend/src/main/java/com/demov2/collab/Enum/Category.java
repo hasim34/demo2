@@ -5,8 +5,6 @@ import jakarta.persistence.Enumerated;
 
 public class Category {
 
-    @Enumerated(EnumType.STRING)
-    private Category category;
-    private  int price;
+
 
 }
