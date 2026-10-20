@@ -1,9 +1,11 @@
 package com.demov2.collab.Service;
 
+import com.demov2.collab.Dto.CreateCustomerRequest;
 import com.demov2.collab.Entity.Customer;
 import com.demov2.collab.Entity.Enums.CustomerStatus;
 import com.demov2.collab.Repository.CustomerRepository;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,16 +14,19 @@ import java.util.List;
 public class CustomerService {
     private final CustomerRepository customerRepository;
 
-
     public CustomerService(CustomerRepository customerRepository){
         this.customerRepository=customerRepository;
     }
 
 
-    public String addCustomer(Customer customer){
+    public ResponseEntity<?> addCustomer(CreateCustomerRequest createCustomerRequest){
+        Customer customer = new Customer();
+
+        customer.setAddress(createCustomerRequest.getAddress());
+        customer.setName(createCustomerRequest.getName());
+        customer.setPhoneNumber(createCustomerRequest.getPhoneNumber());
         customer.setCustomerStatus(CustomerStatus.Active);
-        customerRepository.save(customer);
-        return  "Customer added Successfully";
+        ;
     }
 
     public String addCustomers(List<Customer> customers){
@@ -41,6 +46,7 @@ public class CustomerService {
      Customer customer = customerRepository.findById(id).orElseThrow(()->new RuntimeException("user Not Found"));
 
      customer.setCustomerStatus(customerStatus);
+     customerRepository.save(customer);
      return "Customer status updated Successfully";
 
     }

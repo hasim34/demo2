@@ -8,5 +8,5 @@ import lombok.Data;
 @Data 
 public class OrderDto {
     private Long customerId;
-    private List<OrderItemDto> items = new ArrayList<>();
+    private List<com.demov2.collab.Dto.OrderItemDto> items = new ArrayList<>();
 }
