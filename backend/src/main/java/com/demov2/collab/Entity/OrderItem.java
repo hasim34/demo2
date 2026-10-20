@@ -1,5 +1,7 @@
 package com.demov2.collab.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 // import org.hibernate.mapping.ManyToOne;
 
 import jakarta.annotation.Generated;
@@ -19,6 +21,7 @@ public class OrderItem  extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "order_id")
+    @JsonIgnore 
     private Orders order;
 
     

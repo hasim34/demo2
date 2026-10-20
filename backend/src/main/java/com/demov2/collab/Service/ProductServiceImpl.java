@@ -32,6 +32,7 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Product createProduct(Product product) {
+        System.out.println(product.getManufacturor());
         return productRepository.save(product);
     }
 

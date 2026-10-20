@@ -3,7 +3,9 @@ package com.demov2.collab.Controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demov2.collab.DTO.ApiErrorResponse;
+import com.demov2.collab.DTO.ApiSuccessResponse;
 import com.demov2.collab.DTO.OrderDto;
+import com.demov2.collab.Service.*;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequiredArgsConstructor
 public class OrderController {
     
+
+    private final OrderService orderService;
     // private final OrderService
     @GetMapping("{id}")
     public String getMethodName(@PathVariable Long id) {
@@ -29,11 +33,9 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<ApiErrorResponse> postMethodName(@RequestBody OrderDto order) {
+    public ApiSuccessResponse postMethodName(@RequestBody OrderDto order) {
         //TODO: process POST request
-        
-        
-        return null;
+        return orderService.createOrder(order);
     }
     
     
